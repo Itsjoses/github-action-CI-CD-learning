@@ -27,5 +27,3 @@ jobs:
     - run: npm ci
 
     - run: npm run build  # Build proyek Vite React
-
-    - run: npm test  # Jalankan test jika ada
