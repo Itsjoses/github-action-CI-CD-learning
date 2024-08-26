@@ -28,10 +28,11 @@ jobs:
         context: .
         push: true
         tags: itsjoses/testing-ci-cd
-      env:
-        VITE_TESTING: ${{ secrets.VITE_TESTING }}
+        build-args: |
+          VITE_TESTING=${{ secrets.VITE_TESTING }}
 
-        
+
+
   deploy:
     runs-on: ubuntu-latest
     name: Continuous Deployment to VPS
@@ -46,4 +47,5 @@ jobs:
           script: |
             cd /var/www/testing-ci-cd
             docker compose down
+            docker compose pull
             docker compose up --build -d 
