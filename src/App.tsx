@@ -26,7 +26,10 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Testing automatically CI/CD
+        CI/CD
+      </p>
+      <p>
+        {import.meta.env.VITE_TESTING}
       </p>
     </>
   )
