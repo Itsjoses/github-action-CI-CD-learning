@@ -1,7 +1,8 @@
 # Stage 1: Build stage
 FROM node:20-alpine AS build-stage
 WORKDIR /app
-
+# Set environment variables during runtime
+ENV VITE_TESTING=default_value
 COPY package.json .
 RUN npm install
 COPY . .

@@ -28,7 +28,10 @@ jobs:
         context: .
         push: true
         tags: itsjoses/testing-ci-cd
+      env:
+        VITE_TESTING: ${{ secrets.VITE_TESTING }}
 
+        
   deploy:
     runs-on: ubuntu-latest
     name: Continuous Deployment to VPS
