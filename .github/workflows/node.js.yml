@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  ci-docker-hub:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +28,18 @@ jobs:
         context: .
         push: true
         tags: itsjoses/testing-ci-cd
+
+  deploy:
+    runs-on: ubuntu-latest
+    name: Continuous Deployment to VPS
+    needs: ci-docker-hub
+    steps:
+      - name: Deploy to Private VPS using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /var/www/testing-ci-cd/
+            docker compose up --build -d 

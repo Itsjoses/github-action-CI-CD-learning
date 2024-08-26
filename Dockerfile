@@ -1,8 +1,7 @@
 # Stage 1: Build stage
 FROM node:20-alpine AS build-stage
 WORKDIR /app
-# Copy .env file
-COPY .env .env
+
 COPY package.json .
 RUN npm install
 COPY . .
